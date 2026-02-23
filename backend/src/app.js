@@ -29,9 +29,11 @@ app.use("/api/", limiter);
 
 connectDB();
 
+const { userAuth } = require("./middlewares/auth");
+
 app.use("/", authRouter);
-app.use("/", profileRouter);
-app.use("/", requestRouter);
+app.use("/api/profile", userAuth, profileRouter);
+app.use("/api/request", userAuth, requestRouter);
 
 app.listen(7777, () => {
   console.log("Server running on port 7777");
