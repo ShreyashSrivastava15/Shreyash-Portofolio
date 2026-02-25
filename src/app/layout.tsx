@@ -1,16 +1,47 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import React from "react";
 import { ThemeProvider } from "@/components/theme-provider";
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shreyash | Software Engineer Portfolio",
-  description: "Senior Product Designer & Full-Stack Architect, specializing in scalable systems and AI-powered applications.",
-  keywords: ["Software Engineer", "Full-Stack Developer", "Next.js", "React", "AI", "S.A.F.E", "Phishing Detection"],
+  title: "Shreyash | Software Engineer & Full-Stack Architect",
+  description: "Engineering high-impact systems like S.A.F.E. – AI-powered scam detection. Final-year CSE student focused on security, scalability, and performance.",
+  keywords: ["Software Engineer", "Full-Stack Developer", "Next.js", "React", "AI", "S.A.F.E", "Phishing Detection", "System Architecture", "Security Engineer", "Prisma", "PostgreSQL", "Docker", "Redis", "Express.js", "Node.js"],
+  authors: [{ name: "Shreyash" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://shreyash-portfolio.vercel.app", // Replace with actual URL if known
+    title: "Shreyash | Software Engineer",
+    description: "Engineering a Safer, Scalable Web. Creator of S.A.F.E. AI.",
+    siteName: "Shreyash Portfolio",
+    images: [
+      {
+        url: "/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Shreyash Portfolio - Software Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shreyash | Software Engineer",
+    description: "Engineering high-impact platforms for a safer web.",
+    images: ["/og-image.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
+
+import { UIProvider } from "@/context/ui-context";
 
 export default function RootLayout({
   children,
@@ -26,10 +57,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          <main className="pt-16">
-            {children}
-          </main>
+          <UIProvider>
+            <Navbar />
+            <main className="pt-16">
+              {children}
+            </main>
+            <Footer />
+          </UIProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -2,22 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Moon, Sun, Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github, Linkedin, Mail, Cpu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import ArchitectureModal from './architecture-modal';
 
 const NavLinks = [
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' },
 ];
+
+import { useUI } from '@/context/ui-context';
 
 export default function Navbar() {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const { isArchModalOpen, openArchModal, closeArchModal } = useUI();
 
     useEffect(() => setMounted(true), []);
 
@@ -27,9 +32,13 @@ export default function Navbar() {
         <nav className="fixed top-0 w-full z-50 glass dark:glass-dark">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <div className="flex-shrink-0 font-bold text-2xl gradient-text">
+                    <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="shrink-0 font-bold text-2xl gradient-text cursor-pointer"
+                    >
                         Not-Rambo
-                    </div>
+                    </motion.div>
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
@@ -42,16 +51,41 @@ export default function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <button
+                            <div className="flex items-center gap-4 border-l border-white/10 pl-8 ml-2">
+                                <Link href="https://github.com/Not-Rambo" target="_blank" className="text-foreground/40 hover:text-primary transition-colors">
+                                    <Github size={20} />
+                                </Link>
+                                <Link href="https://www.linkedin.com/in/shreyashsrivastavaa" target="_blank" className="text-foreground/40 hover:text-primary transition-colors">
+                                    <Linkedin size={20} />
+                                </Link>
+                            </div>
+                            <motion.button
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={openArchModal}
+                                className="p-2 rounded-lg bg-accent/10 text-accent hover:bg-accent/20 transition-all ml-2"
+                                title="Under the Hood"
+                            >
+                                <Cpu size={20} />
+                            </motion.button>
+                            <motion.button
+                                whileHover={{ scale: 1.1, rotate: 15 }}
+                                whileTap={{ scale: 0.9 }}
                                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                                 className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
                             >
                                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                            </button>
+                            </motion.button>
                         </div>
                     </div>
 
                     <div className="md:hidden flex items-center gap-4">
+                        <button
+                            onClick={openArchModal}
+                            className="p-2 rounded-lg bg-accent/10 text-accent hover:bg-accent/20 transition-all"
+                        >
+                            <Cpu size={20} />
+                        </button>
                         <button
                             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                             className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-all"
@@ -91,6 +125,8 @@ export default function Navbar() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            <ArchitectureModal isOpen={isArchModalOpen} onClose={closeArchModal} />
         </nav>
     );
 }

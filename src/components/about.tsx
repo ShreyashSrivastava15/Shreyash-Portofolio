@@ -10,12 +10,15 @@ export default function About() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="relative"
+                    className="relative group"
                 >
-                    <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-white/10 flex items-center justify-center overflow-hidden">
-                        {/* Placeholder for Profile Image or Abstract Art */}
-                        <div className="text-6xl text-primary/40 font-bold italic select-none">Not-Rambo</div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                    <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 glass dark:glass-dark relative">
+                        <img
+                            src="/profile.png"
+                            alt="Shreyash Portfolio Profile"
+                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent opacity-60" />
                     </div>
                     {/* Decorative elements */}
                     <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 blur-3xl -z-10" />

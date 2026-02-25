@@ -1,0 +1,23 @@
+name: Lighthouse Audit
+on:
+  deployment_status:
+    status: [success]
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          urls: |
+            https://shreyash-portfolio.vercel.app/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+      - name: Update Badge Data
+        run: |
+          # Logic to update a static JSON file or push to a Gist for the badge
+          # This can be used by the frontend to show "Verified" scores
+          echo "Scores: ${{ steps.lighthouse.outputs.manifest }}"

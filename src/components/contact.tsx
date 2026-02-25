@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, MessageSquare, ArrowUpRight } from 'lucide-react';
 
 const socials = [
-    { name: 'LinkedIn', icon: <Linkedin size={24} />, href: 'https://linkedin.com/in/shreyash', color: 'hover:text-[#0077b5]' },
+    { name: 'LinkedIn', icon: <Linkedin size={24} />, href: 'https://www.linkedin.com/in/shreyashsrivastavaa', color: 'hover:text-[#0077b5]' },
     { name: 'GitHub', icon: <Github size={24} />, href: 'https://github.com/Not-Rambo', color: 'hover:text-primary' },
     { name: 'Email', icon: <Mail size={24} />, href: 'mailto:shreyash@example.com', color: 'hover:text-red-500' },
 ];
 
 export default function Contact() {
     return (
-        <section id="contact" className="py-24 px-4 overflow-hidden relative">
+        <section id="contact" className="py-24 px-4 overflow-hidden relative border-t border-white/5">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -z-10" />
 
             <div className="max-w-4xl mx-auto text-center">
@@ -60,10 +60,6 @@ export default function Contact() {
                     </div>
                 </motion.div>
             </div>
-
-            <footer className="mt-24 pt-12 border-t border-foreground/5 text-center text-foreground/40 text-sm">
-                <p>© {new Date().getFullYear()} Shreyash. Built with Next.js, Tailwind & Framer Motion.</p>
-            </footer>
         </section>
     );
 }

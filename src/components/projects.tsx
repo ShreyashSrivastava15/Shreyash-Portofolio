@@ -51,7 +51,8 @@ export default function Projects() {
                     <p className="text-foreground/60 max-w-xl text-lg">Detailed breakdowns of projects built for impact, scalability, and security.</p>
                 </div>
                 <motion.a
-                    whileHover={{ x: 10 }}
+                    whileHover={{ x: 10, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     href="https://github.com/Not-Rambo"
                     className="flex items-center gap-2 text-primary font-semibold group"
                 >
@@ -74,7 +75,7 @@ export default function Projects() {
                                 <div className="absolute inset-0 flex items-center justify-center opacity-40 group-hover:scale-110 transition-transform duration-700">
                                     {project.id === 'safe' ? <ShieldAlert size={120} /> : <Cpu size={120} />}
                                 </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
 
                                 {/* Metrics Overlay */}
                                 <div className="absolute bottom-6 left-6 right-6 flex justify-between gap-4">
@@ -120,12 +121,26 @@ export default function Projects() {
                             </div>
 
                             <div className="flex items-center gap-6">
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold hover:text-primary transition-colors">
+                                <motion.a
+                                    whileHover={{ scale: 1.05, color: 'var(--primary)' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 font-bold transition-colors"
+                                >
                                     <Github size={20} /> Repository
-                                </a>
-                                <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-bold hover:text-primary transition-colors">
+                                </motion.a>
+                                <motion.a
+                                    whileHover={{ scale: 1.05, color: 'var(--primary)' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    href={project.live}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 font-bold transition-colors"
+                                >
                                     <ExternalLink size={20} /> Live Demo
-                                </a>
+                                </motion.a>
                             </div>
                         </div>
                     </motion.div>
