@@ -7,7 +7,6 @@ require("dotenv").config();
 
 const connectDB = require("./config/database");
 
-const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 
@@ -22,18 +21,16 @@ app.use(express.json());
 // Rate Limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again after 15 minutes",
+  max: 100,
+  message: "Too many requests from this IP",
 });
 app.use("/api/", limiter);
 
 connectDB();
 
-const { userAuth } = require("./middlewares/auth");
-
-app.use("/", authRouter);
-app.use("/api/profile", userAuth, profileRouter);
-app.use("/api/request", userAuth, requestRouter);
+// Removed public authRouter for Portfolio Security
+app.use("/api/profile", profileRouter);
+app.use("/api/request", requestRouter);
 
 app.listen(7777, () => {
   console.log("Server running on port 7777");

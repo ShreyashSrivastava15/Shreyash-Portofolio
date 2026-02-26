@@ -10,24 +10,6 @@ export default function About() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="relative group"
-                >
-                    <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 glass dark:glass-dark relative">
-                        <img
-                            src="/profile.png"
-                            alt="Shreyash Portfolio Profile"
-                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent opacity-60" />
-                    </div>
-                    {/* Decorative elements */}
-                    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 blur-3xl -z-10" />
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
                         Connecting Code to <span className="gradient-text">Real-World Impact.</span>
@@ -54,6 +36,17 @@ export default function About() {
                             <h4 className="text-2xl font-bold text-accent">5+</h4>
                             <p className="text-sm text-foreground/60 font-medium uppercase tracking-wider">Core CSE Domains</p>
                         </div>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="relative group opacity-50"
+                >
+                    <div className="aspect-4/5 rounded-4xl border border-white/5 bg-foreground/5 relative">
+                        {/* Static image placeholder for dynamic follower */}
                     </div>
                 </motion.div>
             </div>

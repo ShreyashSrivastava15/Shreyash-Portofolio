@@ -1,4 +1,4 @@
-# Portfolio: Shreyash (Not-Rambo)
+# Portfolio: Shreyash Srivastava
 
 I designed and developed a modern, high-impact personal portfolio with a clear goal: to present myself as an engineer who thinks in systems, impact, and execution — not just UI.
 

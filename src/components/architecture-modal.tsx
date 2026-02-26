@@ -15,17 +15,15 @@ graph TD
     User([User]) --> |HTTPS| Frontend[Next.js App Router]
     
     subgraph "Infrastructure"
-        Frontend --> |CORS/Auth| Backend[Node.js / Express]
+        Frontend --> |Public API| Backend[Node.js / Express]
         
         subgraph "Engines (S.A.F.E)"
             Backend --> RoBERTa[AI Model - RoBERTa]
             Backend --> Scoring[Heuristic Engine]
-            Backend --> Isolation[Isolation Forest]
         end
         
         Backend --> DB[(PostgreSQL / Prisma)]
-        Backend --> Cache[(Redis Cache)]
-        Backend --> Monitor[Docker / System Monitoring]
+        Admin([Admin Dashboard]) -.-> |Auth| Backend
     end
 
     classDef primary fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff;
@@ -33,8 +31,8 @@ graph TD
     classDef dark fill:#1e293b,stroke:#3b82f6,stroke-width:1px,color:#fff;
     
     class Frontend,Backend primary;
-    class DB,Cache,RoBERTa secondary;
-    class User,Monitor dark;
+    class DB,RoBERTa secondary;
+    class Admin dark;
 `;
 
 const TechStack = [
@@ -104,7 +102,7 @@ export default function ArchitectureModal({ isOpen, onClose }: ArchitectureModal
 
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                                     {TechStack.map((category) => (
-                                        <div key={category.name} className="p-8 rounded-[2rem] bg-foreground/5 border border-white/5 group hover:border-accent/30 transition-colors">
+                                        <div key={category.name} className="p-8 rounded-4xl bg-foreground/5 border border-white/5 group hover:border-accent/30 transition-colors">
                                             <h3 className="font-bold text-lg mb-4 text-foreground/80 group-hover:text-accent transition-colors">{category.name}</h3>
                                             <div className="flex flex-wrap gap-2">
                                                 {category.items.map((item) => (
@@ -128,22 +126,22 @@ export default function ArchitectureModal({ isOpen, onClose }: ArchitectureModal
                                 </div>
 
                                 <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="p-8 rounded-[2rem] bg-linear-to-br from-primary/10 to-transparent border border-primary/20">
+                                    <div className="p-8 rounded-4xl bg-linear-to-br from-primary/10 to-transparent border border-primary/20">
                                         <div className="flex items-center gap-3 mb-4 text-primary">
                                             <Shield size={20} />
-                                            <h3 className="font-bold">Security Context</h3>
+                                            <h3 className="font-bold">Security & Reliability</h3>
                                         </div>
                                         <p className="text-sm text-foreground/60 leading-relaxed">
-                                            Implementing JWT with Refresh Token rotation, Fingerprinting for fraud detection, and a multi-stage rate limiter for system resilience.
+                                            Focusing on Read-Only public endpoints for data integrity, Rate-Limiting for system resilience, and Admin-only write access via secure tokens.
                                         </p>
                                     </div>
-                                    <div className="p-8 rounded-[2rem] bg-linear-to-br from-accent/10 to-transparent border border-accent/20">
+                                    <div className="p-8 rounded-4xl bg-linear-to-br from-accent/10 to-transparent border border-accent/20">
                                         <div className="flex items-center gap-3 mb-4 text-accent">
                                             <Database size={20} />
-                                            <h3 className="font-bold">Data Strategy</h3>
+                                            <h3 className="font-bold">System Integrity</h3>
                                         </div>
                                         <p className="text-sm text-foreground/60 leading-relaxed">
-                                            Leveraging Prisma for type-safe queries, optimized indexing in PostgreSQL, and Redis-backed caching for real-time performance.
+                                            Leveraging Type-Safe queries (Prisma/TS) and structured schema validation to ensure data consistency across all engineering modules.
                                         </p>
                                     </div>
                                 </section>

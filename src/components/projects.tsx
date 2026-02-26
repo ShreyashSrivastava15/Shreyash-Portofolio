@@ -8,18 +8,18 @@ const projects = [
     {
         id: 'safe',
         title: 'S.A.F.E. – Scam Analysis & Fraud Elimination',
-        tagline: 'AI-powered scam detection platform protecting users in real-time.',
+        tagline: 'ML-powered scam detection platform for real-time threat analysis.',
         icon: <ShieldCheck className="text-red-500" />,
-        description: 'A production-grade, multi-modal system that analyzes URLs, messages, and transaction patterns using specialized ML models to identify potential scams.',
-        problem: 'Rising digital fraud and phishing attacks target millions daily, often through subtle psychological triggers that traditional filters miss.',
-        solution: 'Engineered a 5-engine analysis architecture (RoBERTa, Isolation Forests, intelligence-based scoring) that detects fraud across multiple vectors.',
+        description: 'A multi-modal system that analyzes URLs and message patterns using specialized models to identify potential digital fraud.',
+        problem: 'Rising digital fraud and phishing attacks target millions daily, often through subtle psychological triggers.',
+        solution: 'Engineered a specialized analysis pipeline (RoBERTa, intelligence-based scoring) to detect fraud across multiple vectors.',
         metrics: [
             { label: 'Detection Accuracy', value: '94%+' },
             { label: 'Latency', value: '<250ms' },
             { label: 'Analysis Vectors', value: '5-Engine' },
         ],
         tech: ['Next.js', 'FastAPI', 'Python', 'Supabase', 'Render'],
-        github: 'https://github.com/Not-Rambo/safe',
+        github: 'https://github.com/ShreyashSrivastava15/safe',
         live: 'https://safe-phi.vercel.app',
         image: '/projects/safe.webp', // Placeholder
     },
@@ -36,7 +36,7 @@ const projects = [
             { label: 'Visual Reports', value: 'Interactive' },
         ],
         tech: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
-        github: 'https://github.com/Not-Rambo/dsa-tracker',
+        github: 'https://github.com/ShreyashSrivastava15/dsa-tracker',
         live: '#',
         image: '/projects/dsa.webp', // Placeholder
     },
@@ -53,7 +53,7 @@ export default function Projects() {
                 <motion.a
                     whileHover={{ x: 10, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    href="https://github.com/Not-Rambo"
+                    href="https://github.com/ShreyashSrivastavaa"
                     className="flex items-center gap-2 text-primary font-semibold group"
                 >
                     View More on GitHub <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -72,15 +72,29 @@ export default function Projects() {
                         {/* Visuals / Media */}
                         <div className="flex-1 w-full relative">
                             <div className="aspect-video rounded-2xl bg-foreground/5 border border-white/10 overflow-hidden relative group">
-                                <div className="absolute inset-0 flex items-center justify-center opacity-40 group-hover:scale-110 transition-transform duration-700">
+                                {/* Image Renderer */}
+                                {project.image && (
+                                    <div className="absolute inset-0 z-0">
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            fill
+                                            className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                        />
+                                    </div>
+                                )}
+
+                                {/* Fallback Icon (Z-indexed above image but lower opacity) */}
+                                <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-10 transition-opacity duration-700 z-10 pointer-events-none">
                                     {project.id === 'safe' ? <ShieldAlert size={120} /> : <Cpu size={120} />}
                                 </div>
-                                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent" />
+
+                                <div className="absolute inset-0 bg-linear-to-t from-background/80 via-transparent to-transparent z-20" />
 
                                 {/* Metrics Overlay */}
-                                <div className="absolute bottom-6 left-6 right-6 flex justify-between gap-4">
+                                <div className="absolute bottom-6 left-6 right-6 flex justify-between gap-4 z-30">
                                     {project.metrics.map((m) => (
-                                        <div key={m.label} className="p-3 rounded-xl glass dark:glass-dark backdrop-blur-xl flex-1 text-center">
+                                        <div key={m.label} className="p-3 rounded-xl glass dark:glass-dark backdrop-blur-xl flex-1 text-center border border-white/10">
                                             <div className="text-xl font-bold text-primary">{m.value}</div>
                                             <div className="text-[10px] uppercase font-bold text-foreground/40">{m.label}</div>
                                         </div>

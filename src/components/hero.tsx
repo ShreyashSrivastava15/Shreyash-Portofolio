@@ -5,12 +5,13 @@ import { ChevronRight, Download } from 'lucide-react';
 
 export default function Hero() {
     return (
-        <section className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
+        <section className="min-h-[90vh] flex flex-col items-center justify-center px-4 pt-32 lg:pt-0 relative overflow-hidden">
             {/* Background Gradients */}
             <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
             <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px]" />
 
-            <div className="max-w-7xl w-full grid lg:grid-cols-2 gap-12 items-center text-left">
+            <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center text-left relative z-10">
+                {/* Left Column: Text Content */}
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -55,23 +56,14 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
+                {/* Right Column: Image Placeholder */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9, x: 30 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="relative hidden lg:block"
+                    className="relative block"
                 >
-                    <div className="aspect-[4/5] max-w-[450px] mx-auto rounded-[3.5rem] overflow-hidden border border-white/10 glass dark:glass-dark relative shadow-2xl">
-                        <img
-                            src="/profile.png"
-                            alt="Shreyash - Software Engineer"
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent opacity-80" />
-                    </div>
-                    {/* Decorative blobs */}
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/30 blur-[100px] -z-10" />
-                    <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/30 blur-[100px] -z-10" />
+                    <div className="aspect-4/5 max-w-[450px] mx-auto rounded-4xl border border-white/5 bg-foreground/5 relative" />
                 </motion.div>
             </div>
 

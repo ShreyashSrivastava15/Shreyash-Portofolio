@@ -37,7 +37,7 @@ export default function Navbar() {
                         whileTap={{ scale: 0.95 }}
                         className="shrink-0 font-bold text-2xl gradient-text cursor-pointer"
                     >
-                        Not-Rambo
+                        Shreyash Srivastava
                     </motion.div>
 
                     <div className="hidden md:block">
@@ -52,7 +52,7 @@ export default function Navbar() {
                                 </Link>
                             ))}
                             <div className="flex items-center gap-4 border-l border-white/10 pl-8 ml-2">
-                                <Link href="https://github.com/Not-Rambo" target="_blank" className="text-foreground/40 hover:text-primary transition-colors">
+                                <Link href="https://github.com/ShreyashSrivastavaa" target="_blank" className="text-foreground/40 hover:text-primary transition-colors">
                                     <Github size={20} />
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/shreyashsrivastavaa" target="_blank" className="text-foreground/40 hover:text-primary transition-colors">

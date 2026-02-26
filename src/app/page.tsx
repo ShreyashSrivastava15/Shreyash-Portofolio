@@ -4,16 +4,20 @@ import Skills from "@/components/skills";
 import Projects from "@/components/projects";
 import Experience from "@/components/experience";
 import Contact from "@/components/contact";
+import DynamicProfileImage from "@/components/dynamic-profile-image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-0">
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
-    </div>
+    <main className="relative">
+      <DynamicProfileImage />
+      <div className="flex flex-col gap-0">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+      </div>
+    </main>
   );
 }
